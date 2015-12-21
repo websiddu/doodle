@@ -15,7 +15,8 @@ module.exports = function (grunt) {
 
   // Automatically load required grunt tasks
   require('jit-grunt')(grunt, {
-    useminPrepare: 'grunt-usemin'
+    useminPrepare: 'grunt-usemin',
+    buildcontrol: 'grunt-build-control'
   });
 
   // Configurable paths
@@ -163,6 +164,22 @@ module.exports = function (grunt) {
         }]
       }
     },
+
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'Built from %sourceCommit% on branch %sourceBranch%'
+      },
+      pages: {
+        options: {
+          remote: 'git@github.com:websiddu/doodle.git',
+          branch: 'gh-pages'
+        }
+      }
+    },
+
 
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
@@ -335,9 +352,22 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
+            'fonts/{,*/}*.*'
           ]
         }]
+      }
+    },
+
+    'ftp-deploy': {
+      build: {
+        auth: {
+          host: 'ftp.diamondesigners.com',
+          port: 21,
+          authKey: 'dd'
+        },
+        src: '<%= config.dist %>',
+        dest: 'doodle/',
+        exclusions: ['<%= config.dist %>/.git', '<%= config.dist %>/resources', '<%= config.dist %>/**/.DS_Store', '<%= config.dist %>/**/Thumbs.db', '<%= config.dist %>/tmp']
       }
     },
 
@@ -410,6 +440,8 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin'
   ]);
+
+  grunt.registerTask('deploy', 'Deploy to Github Pages', ['build', 'buildcontrol', 'ftp-deploy']);
 
   grunt.registerTask('default', [
     'newer:eslint',

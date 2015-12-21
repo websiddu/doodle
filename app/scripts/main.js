@@ -3,9 +3,9 @@
 
   var _appendToDoodle = function(photos) {
     $.each(photos, function( i, varient ) {
-      var url = varient.url_k || varient.url_o,
-        height = varient.height_k || varient.height_o,
-        width = varient.width_k || varient.width_o;
+      var url = varient.url_o,
+        height = varient.height_o,
+        width = varient.width_o;
       var img = $( "<img class='lazy' data-original='"+ url + "' height='"+ height + "px' width='" + width +"px'/>").appendTo( "#doodles" );
     })
     $("img.lazy").lazyload({

@@ -53,5 +53,9 @@
         2
       ]
     }
+  },
+  "dependencies": {
+    "grunt-build-control": "^0.6.2",
+    "grunt-ftp-deploy": "^0.1.10"
   }
 }
