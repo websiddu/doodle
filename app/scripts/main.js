@@ -1,47 +1,49 @@
-(function(){
-  var url = "https://api.flickr.com/services/rest"
+(function() {
+  var url = "https://api.flickr.com/services/rest",
+  url = "//doodle.cdn.prismic.io/api/documents/search";
+
+  var api;
+
+  Prismic.Api('https://doodle.prismic.io/api', function(err, Api) {
+    // You can use the Api object inside this block
+    api = Api
+    Api.form('everything')
+      .ref(Api.master())
+      .query(Prismic.Predicates.at("document.type", "Post"))
+      .orderings('[my.Post.date desc]')
+      .submit(function(err, response) {
+        // The documents object contains a Response object with all documents of type "product".
+        var page = response.page; // The current page number, the first one being 1
+        var results = response.results; // An array containing the results of the current page;
+        // you may need to retrieve more pages to get all results
+        var prev_page = response.prev_page; // the URL of the previous page (may be null)
+        var next_page = response.next_page; // the URL of the next page (may be null)
+        var results_per_page = response.results_per_page; // max number of results per page
+        var results_size = response.results_size; // the size of the current page
+        var total_pages = response.total_pages; // the number of pages
+        var total_results_size = response.total_results_size; // the total size of results across all pages
+        _appendToDoodle(results)
+      });
+  });
 
   var _appendToDoodle = function(photos) {
-    $.each(photos, function( i, varient ) {
-      var url = varient.url_o,
-        height = varient.height_o,
-        width = varient.width_o;
-      var img = $( "<img class='lazy' data-original='"+ url + "' height='"+ height + "px' width='" + width +"px'/>").appendTo( "#doodles" );
+    $.each(photos, function(i, varient) {
+      var url = varient.data['Post.illustration'].value.main.url,
+        height = varient.data['Post.illustration'].value.main.dimensions.height,
+        width = varient.data['Post.illustration'].value.main.dimensions.width,
+        text = varient.data['Post.caption'].value;
+      var img = "<div class='item' style='background-color: #F5F4F0;'>" +
+        "<img class='lazy' data-original='" + url + "' height='" + height + "px' width='" + width + "px'/>" +
+        "</div>";
+
+      $(img)
+        .appendTo("#doodles");
     })
-    $("img.lazy").lazyload({
-      effect : "fadeIn",
-      skip_invisible : true
-    });
-  }
-
-
-  var _getData = function() {
-    $.getJSON(url, {
-        method: "flickr.photosets.getPhotos",
-        api_key: "854eda8a22ce0fc41ef727a252fa6edb",
-        photoset_id: "72157660302181123",
-        user_id: "107302365@N05",
-        extras: "date_upload, url_k, url_o",
-        nojsoncallback: true,
-        format: "json"
-      })
-      .done(function( data ) {
-        var photos = data.photoset.photo
-
-        photos.sort(function (a, b) {
-          if (a.dateupload > b.dateupload) {
-            return -1;
-          }
-          if (a.dateupload < b.dateupload) {
-            return 1;
-          }
-          // a must be equal to b
-          return 0;
-        });
-        _appendToDoodle(photos)
+    $("img.lazy")
+      .lazyload({
+        effect: "fadeIn",
+        skip_invisible: true
       });
   }
-
-  _getData()
 
 })();
