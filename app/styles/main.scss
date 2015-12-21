@@ -1,0 +1,17 @@
+@mixin filter-gradient($c1, $c2, $d) {
+  background: $c1;
+  background: -webkit-linear-gradient($d, $c1, $c2);
+  background: linear-gradient($d, $c1, $c2);
+}
+
+@import "foundation/normalize";
+@import "foundation/foundation";
+
+@import "pages/util";
+@import "pages/nav";
+@import "pages/landing";
+@import "pages/icons";
+
+@import "pages/page";
+@import "pages/footer";
+

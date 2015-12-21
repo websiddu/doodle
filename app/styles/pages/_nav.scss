@@ -1,0 +1,153 @@
+.side-nav-bar {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.sidbar-wrapper {
+  position: fixed;
+  padding: 0 2% 0 3%;
+  box-shadow: 5px 0px 9px -8px #666;
+}
+
+.brand {
+  text-align: center;
+  width: 100%;
+  a {
+    display: inline-block;
+  }
+  img {
+    max-width: 45px;
+    max-height: 90px;
+    margin: 6px;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+  }
+}
+
+.side-nav {
+  list-style-type: none;
+  text-align: center;
+}
+
+.side-nav li.nav-active {
+  a {
+    color: $c5;
+  }
+}
+
+/* Social list */
+.social-list {
+  margin: 0;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+  &.long {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+  li {
+    &:first-child {
+      margin-left: 0;
+    }
+    a {
+      em {
+        font-size: 32px;
+      }
+    }
+  }
+}
+
+hr {
+  margin: 10px 0;
+  color: #ddd;
+}
+
+.side-footer {
+  p.muted {
+    font-size: 13px;
+    font-weight: 200;
+  }
+}
+
+.side-social {}
+
+.landing-footer {
+  // margin-top: 40px;
+}
+
+.builton {
+  a {
+    display: inline-block;
+    height: 18px;
+    padding: 6px 0 0 0;
+  }
+  img {
+    height: 18px;
+    margin: 0 5px 0 0;
+  }
+  font-size: 12px;
+  .love {
+    display: inline-block;
+    height: 18px;
+    width: 16px;
+    padding: 6px 0 0 0;
+    em {
+      font-size: 14px;
+      line-height: 14px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+  }
+}
+
+.side-footer {
+  float: right;
+}
+
+$g2-color1: #434A54;
+$g2-color2: #656D78;
+
+@media #{$small-max} {
+  .top-bar.expanded {
+    background-color: $header-background-c1;
+    @include filter-gradient($header-background-c1, $header-background-c1, horizontal);
+    .top-bar-section ul li > a {
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    .top-bar-section ul li:hover > a:before {
+      top: 5px;
+      bottom: 5px;
+    }
+    .top-bar-section ul li.active > a:before {
+      top: 5px;
+      bottom: 5px;
+    }
+    .top-bar-section ul {
+      li > a {}
+    }
+  }
+}
+
+@media #{$small-max} {
+  .side-footer {
+    // display: none;
+    text-align: center;
+    float: none;
+  }
+  .side-social {
+    text-align: center;
+    margin: 20px auto 50px auto;
+    &.long {
+      margin: 10px auto 0 auto;
+    }
+  }
+}

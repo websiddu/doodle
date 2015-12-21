@@ -1,0 +1,104 @@
+body {
+  font-weight: 200;
+  background-color: $page-background-c1;
+
+  @include filter-gradient($page-background-c1, $page-background-c2, horizontal);
+
+  background-image: linear-gradient(left, $page-background-c1 0%, $page-background-c2 100%);
+  letter-spacing: -0.01em;
+}
+
+.logo-back {
+  fill: $logo-back;
+}
+
+.logo-front {
+  fill: $logo-front;
+}
+
+.logo-text {
+  fill: $logo-text;
+}
+
+.l-dc-intro {
+  position: relative;
+}
+
+
+.l-d-d {
+  font-size: 18px;
+  font-weight: 200;
+
+  //text-shadow: 0px 1px 1px #aaa;
+}
+
+h1 {
+  font-size: 35px;
+  font-weight: 200;
+  margin: 16px auto 7px;
+  min-height: 40px;
+  margin-bottom: 20px;
+  font-family: "Alegreya", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+
+.doodles {
+  margin: 0 -35px;
+  img {
+    display: block;
+    margin-bottom: 50px;
+  }
+}
+
+
+.text-normal {
+  font-weight: normal;
+}
+
+.clear {
+  clear: both;
+}
+
+
+
+.main-page {
+  background-color: #fff;
+  // box-shadow: 0 0 5px #EAEAEA;
+  overflow: hidden;
+  position: relative;
+  padding: 0 35px;
+  min-height: 700px;
+}
+
+
+.landing-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.contain-to-grid {
+  // background-color: $header-background-c1;
+
+  // @include filter-gradient($header-background-c1, $header-background-c2, horizontal);
+
+  // background-image: linear-gradient(left, $header-background-c1 0%, $header-background-c2 100%);
+  .top-bar {
+    background-color: $header-background-c1;
+    // box-shadow: 0 0 5px #EAEAEA;
+    box-shadow: 0 1px 1px -1px rgba(214, 214, 214, 0.89);
+
+    // border-bottom: solid $header-border-size $header-border-color;
+  }
+}
+
+
+
