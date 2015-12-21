@@ -19,7 +19,7 @@
     $.getJSON(url, {
         method: "flickr.photosets.getPhotos",
         api_key: "854eda8a22ce0fc41ef727a252fa6edb",
-        photoset_id: "72157660277959374",
+        photoset_id: "72157660302181123",
         user_id: "107302365@N05",
         extras: "date_upload, url_k, url_o",
         nojsoncallback: true,
